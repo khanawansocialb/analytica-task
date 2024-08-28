@@ -5,15 +5,46 @@ import 'package:uuid/uuid.dart';
 class TaskCubit extends HydratedCubit<List<TaskModel>> {
   TaskCubit() : super([]);
 
-  void addTask(String title, String description) {
+  // void addTask(String title, String description) {
+  //   final newTask = TaskModel(
+  //     id: const Uuid().v4(),
+  //     title: title,
+  //     description: description,
+  //   );
+  //   emit([...state, newTask]);
+  // }
+
+  // void updateTask(TaskModel updatedTask) {
+  //   final tasks = state.map((task) {
+  //     return task.id == updatedTask.id ? updatedTask : task;
+  //   }).toList();
+  //   emit(tasks);
+  // }
+
+  // void deleteTask(String taskId) {
+  //   final tasks = state.where((task) => task.id != taskId).toList();
+  //   emit(tasks);
+  // }
+
+  void addTask({
+    required String title,
+    String description = '',
+    String? category = 'General', // Nullable category with default value
+    DateTime? dueDate,
+    DateTime? reminder,
+  }) {
     final newTask = TaskModel(
-      id: const Uuid().v4(),
+      id: Uuid().v4(),
       title: title,
       description: description,
+      category: category,
+      dueDate: dueDate,
+      reminder: reminder,
     );
     emit([...state, newTask]);
   }
 
+  // Update a task
   void updateTask(TaskModel updatedTask) {
     final tasks = state.map((task) {
       return task.id == updatedTask.id ? updatedTask : task;
@@ -21,11 +52,13 @@ class TaskCubit extends HydratedCubit<List<TaskModel>> {
     emit(tasks);
   }
 
+  // Delete a task
   void deleteTask(String taskId) {
     final tasks = state.where((task) => task.id != taskId).toList();
     emit(tasks);
   }
 
+  // Toggle task completion
   void toggleTaskCompletion(String taskId) {
     final tasks = state.map((task) {
       return task.id == taskId
@@ -34,6 +67,8 @@ class TaskCubit extends HydratedCubit<List<TaskModel>> {
     }).toList();
     emit(tasks);
   }
+
+
 
   @override
   List<TaskModel> fromJson(Map<String, dynamic> json) {
