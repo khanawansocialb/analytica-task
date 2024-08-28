@@ -40,6 +40,9 @@ dependencies:
   flutter_bloc: ^8.1.6
   equatable: ^2.0.5
   http: ^1.2.2
+  hydrated_bloc: ^9.1.5
+  uuid: ^4.4.2
+  path_provider: ^2.1.4
 
 dev_dependencies:
   flutter_test:
