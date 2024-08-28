@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:the_app/auth/auth%20cubit/auth_cubit.dart';
+import 'package:the_app/auth/service/auth_service.dart';
 import 'package:the_app/config/routes.dart';
 import 'package:the_app/firebase_options.dart';
 
@@ -15,8 +17,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      onGenerateRoute: Routes.generateRoutes,
+    return BlocProvider(
+      create: (context) => AuthCubit(authService: AuthService()),
+      child: const MaterialApp(
+        onGenerateRoute: Routes.generateRoutes,
+      ),
     );
   }
 }
