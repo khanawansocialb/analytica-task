@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class SearchTasksField extends StatelessWidget {
+  ///we'd accept a call back 
+  ///to control the state of the parent
+  
   final ValueChanged<String> onSearchChanged;
 
   const SearchTasksField({Key? key, required this.onSearchChanged}) : super(key: key);

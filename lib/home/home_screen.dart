@@ -4,6 +4,7 @@ import 'package:the_app/config/theme_cubit.dart';
 import 'package:the_app/home/cubit/task_cubit.dart';
 import 'package:the_app/home/model/task_model.dart';
 import 'package:the_app/home/widgets/add_task_sheet.dart';
+import 'package:the_app/home/widgets/app_drawer.dart';
 import 'package:the_app/home/widgets/quote_widget.dart';
 
 import 'widgets/search_tasks.dart';
@@ -23,6 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: AppDrawer(),
       appBar: AppBar(title: const Text('Home Screen'), actions: [IconButton(onPressed: () {
         context.read <ThemeCubit> ().toggleTheme();
       }, icon: const Icon (Icons.star_border))]),

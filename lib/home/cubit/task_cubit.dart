@@ -69,6 +69,8 @@ class TaskCubit extends HydratedCubit<List<TaskModel>> {
   }
   
   List<TaskModel> searchAllTasks(List<TaskModel> tasks, String searchQuery) {
+    ///this will return in the memory
+    ///tasks fromn the ui (bloc builder in our case)
     if (searchQuery.isEmpty) {
       return tasks;
     }
