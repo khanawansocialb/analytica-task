@@ -4,28 +4,7 @@ import 'package:uuid/uuid.dart';
 
 class TaskCubit extends HydratedCubit<List<TaskModel>> {
   TaskCubit() : super([]);
-
-  // void addTask(String title, String description) {
-  //   final newTask = TaskModel(
-  //     id: const Uuid().v4(),
-  //     title: title,
-  //     description: description,
-  //   );
-  //   emit([...state, newTask]);
-  // }
-
-  // void updateTask(TaskModel updatedTask) {
-  //   final tasks = state.map((task) {
-  //     return task.id == updatedTask.id ? updatedTask : task;
-  //   }).toList();
-  //   emit(tasks);
-  // }
-
-  // void deleteTask(String taskId) {
-  //   final tasks = state.where((task) => task.id != taskId).toList();
-  //   emit(tasks);
-  // }
-
+  
   void addTask({
     required String title,
     String description = '',
