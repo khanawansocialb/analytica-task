@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:the_app/config/theme_cubit.dart';
 import 'package:the_app/home/cubit/task_cubit.dart';
 import 'package:the_app/home/model/task_model.dart';
 import 'package:the_app/home/widgets/add_task_sheet.dart';
@@ -22,7 +23,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Home Screen')),
+      appBar: AppBar(title: const Text('Home Screen'), actions: [IconButton(onPressed: () {
+        context.read <ThemeCubit> ().toggleTheme();
+      }, icon: const Icon (Icons.star_border))]),
       body: Column(
         children: [
           SearchTasksField(

@@ -7,6 +7,7 @@ import 'package:the_app/auth/auth%20cubit/auth_cubit.dart';
 import 'package:the_app/auth/service/auth_service.dart';
 import 'package:the_app/config/app_size.dart';
 import 'package:the_app/config/routes.dart';
+import 'package:the_app/config/theme_cubit.dart';
 import 'package:the_app/firebase_options.dart';
 import 'package:the_app/home/cubit/task_cubit.dart';
 
@@ -34,9 +35,21 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => TaskCubit(),
         ),
+        BlocProvider(
+          create: (context) => ThemeCubit(),
+        ),
       ],
-      child: const MaterialApp(
-        onGenerateRoute: Routes.generateRoutes,
+      child: BlocBuilder<ThemeCubit, ThemeMode>(
+        builder: (context, state) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Task',
+            theme: ThemeData.light(),
+            darkTheme: ThemeData.dark(), 
+            themeMode: state,
+            onGenerateRoute: Routes.generateRoutes,
+          );
+        },
       ),
     );
   }
