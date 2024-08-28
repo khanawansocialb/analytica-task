@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "709895617602",
+    "project_id": "analytica-task-11bd1",
+    "storage_bucket": "analytica-task-11bd1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:709895617602:android:e9600447f542683f7881db",
+        "android_client_info": {
+          "package_name": "com.example.the_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvVN4QarQ2kTzOjSgqSHVhBGBu-iQa1WE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
