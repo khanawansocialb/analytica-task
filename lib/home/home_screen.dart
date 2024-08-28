@@ -52,12 +52,19 @@ class _HomeScreenState extends State<HomeScreen> {
                             subtitle: Text(task.dueDate == null
                                 ? "no due"
                                 : task.dueDate.toString().substring(0, 10)),
-                            trailing: Checkbox(
-                              value: task.isCompleted,
-                              onChanged: (_) {
-                                context.read<TaskCubit>().toggleTaskCompletion(task.id);
-                              },
-                            ),
+                            trailing: AnimatedSwitcher(
+                          duration: const Duration(milliseconds: 500),
+                          transitionBuilder: (Widget child, Animation<double> animation) {
+                            return ScaleTransition(child: child, scale: animation);
+                          },
+                          child: Checkbox(
+                            key: ValueKey<bool>(task.isCompleted),
+                            value: task.isCompleted,
+                            onChanged: (_) {
+                              context.read<TaskCubit>().toggleTaskCompletion(task.id);
+                            },
+                          ),
+                        ),
                             children: [
                               Text(task.description),
                               Text(task.reminder == null
