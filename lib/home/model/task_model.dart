@@ -1,3 +1,6 @@
+import 'dart:core';
+import 'dart:core';
+
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -7,12 +10,18 @@ class TaskModel extends Equatable {
   final String title;
   final String description;
   final bool isCompleted;
+  String? category = 'General';
+  final DateTime? dueDate;
+  final DateTime? reminder;
 
-   TaskModel({
+  TaskModel({
     required this.id,
     required this.title,
     this.description = '',
     this.isCompleted = false,
+    this.category,
+    this.dueDate,
+    this.reminder,
   });
 
   TaskModel copyWith({
@@ -30,5 +39,5 @@ class TaskModel extends Equatable {
   }
 
   @override
-  List<Object?> get props => [id, title, description, isCompleted];
+  List<Object?> get props => [id, userId, title, description, isCompleted, category, dueDate, reminder];
 }

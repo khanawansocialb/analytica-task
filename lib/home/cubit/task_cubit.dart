@@ -43,6 +43,13 @@ class TaskCubit extends HydratedCubit<List<TaskModel>> {
               title: taskJson['title'],
               description: taskJson['description'],
               isCompleted: taskJson['isCompleted'],
+              category: taskJson['category'],
+              dueDate: taskJson['dueDate'] != null
+                  ? DateTime.parse(taskJson['dueDate'])
+                  : null,
+              reminder: taskJson['reminder'] != null
+                  ? DateTime.parse(taskJson['reminder'])
+                  : null,
             ))
         .toList();
   }
@@ -56,6 +63,9 @@ class TaskCubit extends HydratedCubit<List<TaskModel>> {
                 'title': task.title,
                 'description': task.description,
                 'isCompleted': task.isCompleted,
+                'category': task.category,
+                'dueDate': task.dueDate?.toIso8601String(),
+                'reminder': task.reminder?.toIso8601String(),
               })
           .toList(),
     };
