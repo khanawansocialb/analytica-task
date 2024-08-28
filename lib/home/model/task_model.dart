@@ -1,9 +1,9 @@
 import 'dart:core';
-import 'dart:core';
 
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+// ignore: must_be_immutable
 class TaskModel extends Equatable {
   final String id;
   String userId = FirebaseAuth.instance.currentUser!.uid;
@@ -24,6 +24,18 @@ class TaskModel extends Equatable {
     this.reminder,
   });
 
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'description': description,
+      'isCompleted': isCompleted,
+      'category': category,
+      'dueDate': dueDate?.toIso8601String(),
+      'reminder': reminder?.toIso8601String(),
+    };
+  }
+
   TaskModel copyWith({
     String? id,
     String? title,
@@ -39,5 +51,14 @@ class TaskModel extends Equatable {
   }
 
   @override
-  List<Object?> get props => [id, userId, title, description, isCompleted, category, dueDate, reminder];
+  List<Object?> get props => [
+        id,
+        userId,
+        title,
+        description,
+        isCompleted,
+        category,
+        dueDate,
+        reminder
+      ];
 }

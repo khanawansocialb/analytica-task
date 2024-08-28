@@ -5,9 +5,19 @@ import 'package:the_app/home/model/task_model.dart';
 import 'package:the_app/home/widgets/add_task_sheet.dart';
 import 'package:the_app/home/widgets/quote_widget.dart';
 
-class HomeScreen extends StatelessWidget {
+import 'widgets/search_tasks.dart';
+
+class HomeScreen extends StatefulWidget {
   static const route = "/home";
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  String _searchQuery = '';
+
 
   @override
   Widget build(BuildContext context) {
@@ -15,16 +25,24 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(title: const Text('Home Screen')),
       body: Column(
         children: [
+          SearchTasksField(
+            onSearchChanged: (value) {
+              setState(() {
+                _searchQuery = value;
+              });
+            },
+          ),
           const QuoteWidget(),
           BlocBuilder<TaskCubit, List<TaskModel>>(
             builder: (context, tasks) {
               return Builder(
                 builder: (context) {
+                  final filteredTasks = context.read <TaskCubit> ().searchAllTasks(tasks, _searchQuery);
                   return Expanded(
                     child: ListView.builder(
-                      itemCount: tasks.length,
+                      itemCount: filteredTasks.length,
                       itemBuilder: (context, index) {
-                        final task = tasks[index];
+                        final task = filteredTasks[index];
                         return GestureDetector(
                           onLongPress: () {
                             context.read<TaskCubit>().deleteTask(task.id);
